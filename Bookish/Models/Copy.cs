@@ -5,7 +5,7 @@ namespace Bookish
         public int Id { get; set; }
         public int BookId { get; set; }
 
-        // public Book(int id, int bookId)
+        // public Copy(int id, int bookId)
         // {
         //     Id = id;
         //     BookId = bookId;
