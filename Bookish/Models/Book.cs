@@ -7,6 +7,8 @@ namespace Bookish
         public int AuthorId { get; set; }
         public string FictionVsNonFiction { get; set; }
         public int GenreId { get; set; }
+        public string CoverUrl {get; set;}
+        public string Blurb {get; set;}
 
         // public Book(int id, string title, int authorId, string fictionVsNonFiction, int genreId)
         // {
