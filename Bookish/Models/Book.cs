@@ -15,7 +15,7 @@ namespace Bookish
         // {
         //     Id = id;
         //     Title = title;
-        //     AuthorId = authorId;
+        //     AuthorId = authorId; <= type Author.id
         //     FictionVsNonFiction = fictionVsNonFiction;
         //     GenreId = genreId;
         // }
