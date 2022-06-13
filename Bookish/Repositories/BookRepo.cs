@@ -12,6 +12,7 @@ namespace Bookish.Repositories
                     .Books
                     .Where(book => book.Id == id)
                     .Include(book => book.Authors)
+                    .Include(book => book.Genre)
                     .Single();
         }
 
@@ -20,6 +21,7 @@ namespace Bookish.Repositories
             return _context
                 .Books
                 .Include(book => book.Authors)
+                .Include(book => book.Genre)
                 .ToList();
         }
     }
