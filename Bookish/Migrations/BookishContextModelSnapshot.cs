@@ -22,6 +22,21 @@ namespace Bookish.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("AuthorBook", b =>
+                {
+                    b.Property<int>("AuthorsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BooksId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AuthorsId", "BooksId");
+
+                    b.HasIndex("BooksId");
+
+                    b.ToTable("AuthorBook");
+                });
+
             modelBuilder.Entity("Bookish.Author", b =>
                 {
                     b.Property<int>("Id")
@@ -30,16 +45,11 @@ namespace Bookish.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("BookId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BookId");
 
                     b.ToTable("Authors");
                 });
@@ -78,12 +88,12 @@ namespace Bookish.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("UserIdId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserIdId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("BookBags");
                 });
@@ -99,14 +109,14 @@ namespace Bookish.Migrations
                     b.Property<int?>("BookBagId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BookIdId")
+                    b.Property<int>("BookId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BookBagId");
 
-                    b.HasIndex("BookIdId");
+                    b.HasIndex("BookId");
 
                     b.ToTable("Copies");
                 });
@@ -145,11 +155,19 @@ namespace Bookish.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Bookish.Author", b =>
+            modelBuilder.Entity("AuthorBook", b =>
                 {
+                    b.HasOne("Bookish.Author", null)
+                        .WithMany()
+                        .HasForeignKey("AuthorsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Bookish.Book", null)
-                        .WithMany("Authors")
-                        .HasForeignKey("BookId");
+                        .WithMany()
+                        .HasForeignKey("BooksId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Bookish.Book", b =>
@@ -165,13 +183,13 @@ namespace Bookish.Migrations
 
             modelBuilder.Entity("Bookish.BookBag", b =>
                 {
-                    b.HasOne("Bookish.User", "UserId")
+                    b.HasOne("Bookish.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserIdId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("UserId");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Bookish.Copy", b =>
@@ -180,18 +198,13 @@ namespace Bookish.Migrations
                         .WithMany("BookCopies")
                         .HasForeignKey("BookBagId");
 
-                    b.HasOne("Bookish.Book", "BookId")
+                    b.HasOne("Bookish.Book", "Book")
                         .WithMany()
-                        .HasForeignKey("BookIdId")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BookId");
-                });
-
-            modelBuilder.Entity("Bookish.Book", b =>
-                {
-                    b.Navigation("Authors");
+                    b.Navigation("Book");
                 });
 
             modelBuilder.Entity("Bookish.BookBag", b =>
