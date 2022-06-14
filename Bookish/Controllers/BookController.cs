@@ -24,10 +24,10 @@ public class BookController : Controller
 
         return View(book);
     }
-    public IActionResult BookListIndex()
+    public IActionResult BookList()
     {
-        List<Book> BookList = _bookService.GetAllBooks();
+        List<Book> books = _bookService.GetAllBooks();
 
-        return View(BookList);
+        return View("BookList", books);
     }
 }
