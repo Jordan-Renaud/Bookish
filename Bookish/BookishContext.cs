@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 
+//Context
+
+//model of the database
+
 namespace Bookish
 {
     public class BookishContext : DbContext

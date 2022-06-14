@@ -1,5 +1,11 @@
 using Bookish.Repositories;
 
+//Services
+
+//could talk to mutiple repos
+//does stuff no strictly related to the database
+//      - access an external service related to the books.
+
 namespace Bookish.Services
 {
     public class BookService
