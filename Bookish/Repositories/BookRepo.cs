@@ -31,6 +31,7 @@ namespace Bookish.Repositories
                 .Include(book => book.Genre)
                 .ToList();
         }
+
         public Book CreateBook(CreateBookRequest request)
         {
             Book newBook = new Book
@@ -60,6 +61,5 @@ namespace Bookish.Repositories
 
             return newBook;
         }
-
     }
 }

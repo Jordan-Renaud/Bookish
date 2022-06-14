@@ -1,4 +1,5 @@
 using Bookish.Repositories;
+using Bookish.Models.Requests;
 
 //Services
 
@@ -20,6 +21,11 @@ namespace Bookish.Services
         public List<Book> GetAllBooks()
         {
             return _bookRepo.GetAllBooks();
+        }
+
+        public Book CreateNewBook(CreateBookRequest request)
+        {
+            return _bookRepo.CreateBook(request);
         }
     }
 }
