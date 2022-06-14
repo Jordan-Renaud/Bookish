@@ -1,0 +1,13 @@
+@using Bookish.Models.Requests;
+@model CreateBookRequest;
+@{}
+
+
+<form asp-controller="Book" asp-action="CreateBook" method="post">
+        Title: <input asp-for="Title" /><br />
+        Author ID: <input asp-for="AuthorId" /><br />
+        Cover image URL: <input asp-for="CoverImageUrl" /><br />
+        Blurb: <input asp-for="Blurb" /><br />
+        Genre name: <input asp-for="GenreName" />
+        <button type="submit">Create book</button>
+    </form>

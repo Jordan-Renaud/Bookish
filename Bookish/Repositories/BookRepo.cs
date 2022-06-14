@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Bookish.Models.Requests;
 
 //Repositories
 
@@ -30,5 +31,26 @@ namespace Bookish.Repositories
                 .Include(book => book.Genre)
                 .ToList();
         }
+        public Book CreateBook(CreateBookRequest request)
+        { 
+            Book newBook = new Book
+            {
+                Title = request.Title,
+            };
+            Author author = _context
+            .Authors.Where(a => a.Id == request.AuthorId)
+            .Single();
+
+            Genre genre = _context
+            .Genres
+            .Where (g => g.Id == request.GenreId)
+            .Single();
+            newBook.Authors = new List<Author>();
+            newBook.Authors.Add(author);
+            newBook.Genre = genre;
+            return newBook;
+
+        }
+
     }
 }
