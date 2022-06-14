@@ -10,9 +10,12 @@
     {
         <h3 class="m-3 p-3 w-50 mx-auto border border-primary rounded">@item.Title<br /><small class="text-muted">Written
             by
-            @item.GetAllAuthors()</small></h3>
+            @item.GetAllAuthors()
             <p>@item.Genre.Type</p>
             <p>@item.FictionVsNonFiction</p>
+            </small>
+             </h3>
+            
             <button class="btn btn-success">Check Out Book</button>
     }
     @* <h3 class="m-3 p-3 w-50 mx-auto border border-primary rounded">@Model.Title<br /><small class="text-muted">Written
