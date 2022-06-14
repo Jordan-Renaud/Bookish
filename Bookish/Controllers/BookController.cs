@@ -19,9 +19,15 @@ public class BookController : Controller
     public IActionResult Index()
     {
         Random random = new Random();
-        int randomNumber = random.Next(20, 30);
+        int randomNumber = random.Next(1, 10);
         Book book = _bookService.GetBookById(randomNumber);
 
         return View(book);
+    }
+    public IActionResult BookListIndex()
+    {
+        List<Book> BookList = _bookService.GetAllBooks();
+
+        return View(BookList);
     }
 }
